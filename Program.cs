@@ -1,4 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using movie_app_6.Data;
 var builder = WebApplication.CreateBuilder(args);
+//builder.Services.AddDbContext<movie_app_6Context>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("movie_app_6Context") ?? throw new InvalidOperationException("Connection string 'movie_app_6Context' not found.")));
+
+builder.Services.AddDbContext<movie_app_6Context>(options =>
+    options.UseInMemoryDatabase(databaseName: "MovieDb"));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
